@@ -1,7 +1,7 @@
-import { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Link } from 'react-router-dom';
-import { templateConfig } from '../config/templateConfig';
+import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Link } from "react-router-dom";
+import { templateConfig } from "../config/templateConfig";
 
 const Gallery4 = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -51,17 +51,17 @@ const Gallery4 = () => {
           key={i}
           className="absolute w-64 h-64 rounded-full pointer-events-none"
           style={{
-            background: `radial-gradient(circle, ${['rgba(255,182,193,0.15)', 'rgba(219,112,147,0.15)', 'rgba(255,105,180,0.15)'][i % 3]}, transparent)`,
+            background: `radial-gradient(circle, ${["rgba(255,182,193,0.15)", "rgba(219,112,147,0.15)", "rgba(255,105,180,0.15)"][i % 3]}, transparent)`,
             left: `${(i * 20) % 100}%`,
-            top: `${(i * 17) % 100}%`
+            top: `${(i * 17) % 100}%`,
           }}
           animate={{
             scale: [1, 1.3, 1],
-            opacity: [0.3, 0.6, 0.3]
+            opacity: [0.3, 0.6, 0.3],
           }}
           transition={{
             duration: 5 + i,
-            repeat: Infinity
+            repeat: Infinity,
           }}
         />
       ))}
@@ -97,10 +97,10 @@ const Gallery4 = () => {
                 alt={config.images[currentIndex].caption}
                 className="w-full h-full object-cover"
               />
-              
+
               {/* Gradient Overlay */}
               <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
-              
+
               {/* Caption */}
               <motion.div
                 className="absolute bottom-0 left-0 right-0 p-6"
@@ -118,10 +118,14 @@ const Gallery4 = () => {
 
               {/* Frame Border */}
               <div className="absolute inset-0 border-4 border-white/20 rounded-2xl pointer-events-none" />
-              
+
               {/* Corner Decorations */}
-              <div className="absolute top-4 left-4 text-2xl opacity-60">✨</div>
-              <div className="absolute top-4 right-4 text-2xl opacity-60">💕</div>
+              <div className="absolute top-4 left-4 text-2xl opacity-60">
+                ✨
+              </div>
+              <div className="absolute top-4 right-4 text-2xl opacity-60">
+                💕
+              </div>
             </motion.div>
           </AnimatePresence>
 
@@ -132,7 +136,12 @@ const Gallery4 = () => {
             onClick={prevSlide}
           >
             <img
-              src={config.images[(currentIndex - 1 + config.images.length) % config.images.length].url}
+              src={
+                config.images[
+                  (currentIndex - 1 + config.images.length) %
+                    config.images.length
+                ].url
+              }
               alt="Previous"
               className="w-full h-full object-cover"
             />
@@ -176,12 +185,15 @@ const Gallery4 = () => {
           <motion.button
             key={index}
             className={`w-3 h-3 rounded-full transition-colors ${
-              index === currentIndex ? 'bg-pink-400' : 'bg-white/30'
+              index === currentIndex ? "bg-pink-400" : "bg-white/30"
             }`}
             onClick={() => goToSlide(index)}
             whileHover={{ scale: 1.3 }}
             animate={index === currentIndex ? { scale: [1, 1.3, 1] } : {}}
-            transition={{ duration: 1, repeat: index === currentIndex ? Infinity : 0 }}
+            transition={{
+              duration: 1,
+              repeat: index === currentIndex ? Infinity : 0,
+            }}
           />
         ))}
       </div>

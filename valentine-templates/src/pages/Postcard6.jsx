@@ -1,7 +1,7 @@
-import { useState, useMemo, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Link } from 'react-router-dom';
-import { templateConfig } from '../config/templateConfig';
+import { useState, useMemo, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Link } from "react-router-dom";
+import { templateConfig } from "../config/templateConfig";
 
 const Postcard6 = () => {
   const [isShaken, setIsShaken] = useState(false);
@@ -10,14 +10,18 @@ const Postcard6 = () => {
   const config = templateConfig.postcard6;
 
   // Snowflakes (optimized count)
-  const snowflakes = useMemo(() => Array.from({ length: 30 }, (_, i) => ({
-    id: i,
-    left: (i * 3.33) % 100,
-    delay: (i * 0.1) % 3,
-    duration: 4 + (i % 4),
-    size: 8 + (i % 12),
-    opacity: 0.4 + (i % 6) * 0.1
-  })), []);
+  const snowflakes = useMemo(
+    () =>
+      Array.from({ length: 30 }, (_, i) => ({
+        id: i,
+        left: (i * 3.33) % 100,
+        delay: (i * 0.1) % 3,
+        duration: 4 + (i % 4),
+        size: 8 + (i % 12),
+        opacity: 0.4 + (i % 6) * 0.1,
+      })),
+    [],
+  );
 
   const handleShake = () => {
     if (!isShaken) {
@@ -64,16 +68,16 @@ const Postcard6 = () => {
           className="absolute w-1 h-1 bg-white rounded-full"
           style={{
             left: `${(i * 5) % 100}%`,
-            top: `${(i * 5) % 100}%`
+            top: `${(i * 5) % 100}%`,
           }}
           animate={{
             opacity: [0.2, 0.8, 0.2],
-            scale: [1, 1.5, 1]
+            scale: [1, 1.5, 1],
           }}
           transition={{
             duration: 2 + (i % 3),
             delay: (i * 0.2) % 2,
-            repeat: Infinity
+            repeat: Infinity,
           }}
         />
       ))}
@@ -91,10 +95,14 @@ const Postcard6 = () => {
       <motion.div
         className="relative cursor-pointer"
         onClick={handleShake}
-        animate={isShaken ? {
-          rotate: [0, -10, 10, -5, 5, 0],
-          y: [0, -20, 0]
-        } : {}}
+        animate={
+          isShaken
+            ? {
+                rotate: [0, -10, 10, -5, 5, 0],
+                y: [0, -20, 0],
+              }
+            : {}
+        }
         transition={{ duration: 0.8 }}
         whileHover={!isShaken ? { scale: 1.02 } : {}}
       >
@@ -113,66 +121,68 @@ const Postcard6 = () => {
                   transition={{ duration: 3, repeat: Infinity }}
                 >
                   <div className="w-32 h-32 md:w-40 md:h-40 rounded-full overflow-hidden border-4 border-white/30 shadow-lg">
-                    <img 
-                      src={config.image} 
-                      alt="Love" 
+                    <img
+                      src={config.image}
+                      alt="Love"
                       className="w-full h-full object-cover"
                     />
                   </div>
                 </motion.div>
 
                 {/* Hearts floating */}
-                {showMessage && [...Array(6)].map((_, i) => (
-                  <motion.div
-                    key={i}
-                    className="absolute text-xl"
-                    initial={{ 
-                      x: 0, 
-                      y: 0, 
-                      opacity: 0 
-                    }}
-                    animate={{
-                      x: Math.cos(i * 60 * Math.PI / 180) * 80,
-                      y: Math.sin(i * 60 * Math.PI / 180) * 80 - 20,
-                      opacity: [0, 1, 0],
-                      scale: [0.5, 1.2, 0.5]
-                    }}
-                    transition={{
-                      duration: 3,
-                      delay: i * 0.2,
-                      repeat: Infinity
-                    }}
-                  >
-                    {['💕', '💖', '💗', '❤️', '💝', '🌹'][i]}
-                  </motion.div>
-                ))}
+                {showMessage &&
+                  [...Array(6)].map((_, i) => (
+                    <motion.div
+                      key={i}
+                      className="absolute text-xl"
+                      initial={{
+                        x: 0,
+                        y: 0,
+                        opacity: 0,
+                      }}
+                      animate={{
+                        x: Math.cos((i * 60 * Math.PI) / 180) * 80,
+                        y: Math.sin((i * 60 * Math.PI) / 180) * 80 - 20,
+                        opacity: [0, 1, 0],
+                        scale: [0.5, 1.2, 0.5],
+                      }}
+                      transition={{
+                        duration: 3,
+                        delay: i * 0.2,
+                        repeat: Infinity,
+                      }}
+                    >
+                      {["💕", "💖", "💗", "❤️", "💝", "🌹"][i]}
+                    </motion.div>
+                  ))}
               </div>
 
               {/* Snowflakes */}
-              {snowActive && snowflakes.map((flake) => (
-                <motion.div
-                  key={flake.id}
-                  className="absolute text-white pointer-events-none"
-                  style={{
-                    left: `${flake.left}%`,
-                    top: -20,
-                    fontSize: flake.size,
-                    opacity: flake.opacity
-                  }}
-                  animate={{
-                    y: [0, 280],
-                    x: [0, Math.sin(flake.id) * 20, 0],
-                    rotate: [0, 360]
-                  }}
-                  transition={{
-                    duration: flake.duration,
-                    delay: flake.delay,
-                    ease: "linear"
-                  }}
-                >
-                  ❄
-                </motion.div>
-              ))}
+              {snowActive &&
+                snowflakes.map((flake) => (
+                  <motion.div
+                    key={flake.id}
+                    className="absolute text-white pointer-events-none"
+                    style={{
+                      left: `${flake.left}%`,
+                      top: -20,
+                      fontSize: flake.size,
+                      opacity: flake.opacity,
+                    }}
+                    animate={{
+                      y: [0, 280],
+                      x: [0, Math.sin(flake.id) * 20, 0],
+                      rotate: [0, 360],
+                    }}
+                    transition={{
+                      duration: flake.duration,
+                      delay: flake.delay,
+                      ease: "linear",
+                    }}
+                  >
+                    ❄
+                  </motion.div>
+                ))}
             </div>
 
             {/* Glass Reflection */}
@@ -187,7 +197,9 @@ const Postcard6 = () => {
           <div className="w-40 h-16 md:w-52 md:h-20 mx-auto -mt-4 bg-gradient-to-b from-amber-700 to-amber-900 rounded-b-3xl relative shadow-xl">
             <div className="absolute inset-x-4 top-2 h-2 bg-amber-500/30 rounded-full" />
             <div className="absolute inset-x-8 bottom-3 text-center">
-              <p className="text-amber-200/80 font-serif text-sm">{config.baseText}</p>
+              <p className="text-amber-200/80 font-serif text-sm">
+                {config.baseText}
+              </p>
             </div>
           </div>
         </div>
@@ -222,7 +234,7 @@ const Postcard6 = () => {
               >
                 {config.message}
               </motion.p>
-              
+
               <motion.p
                 className="mt-4 text-pink-300 font-medium italic"
                 initial={{ opacity: 0 }}

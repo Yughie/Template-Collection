@@ -1,16 +1,17 @@
-import { useMemo } from 'react';
-import { motion } from 'framer-motion';
-import { Link } from 'react-router-dom';
+import { useMemo } from "react";
+import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 
 const Showcase = () => {
   const postcards = [
     {
       id: 1,
       title: "Classic Love Letter",
-      description: "An elegant envelope that opens to reveal a heartfelt message",
+      description:
+        "An elegant envelope that opens to reveal a heartfelt message",
       gradient: "from-rose-400 via-pink-500 to-red-400",
       icon: "💌",
-      path: "/postcard-1"
+      path: "/postcard-1",
     },
     {
       id: 2,
@@ -18,7 +19,7 @@ const Showcase = () => {
       description: "A nostalgic postcard with old-world charm and elegance",
       gradient: "from-amber-300 via-rose-400 to-pink-500",
       icon: "🌹",
-      path: "/postcard-2"
+      path: "/postcard-2",
     },
     {
       id: 3,
@@ -26,15 +27,16 @@ const Showcase = () => {
       description: "Playful, colorful, and full of sweet surprises",
       gradient: "from-pink-300 via-purple-400 to-pink-500",
       icon: "💕",
-      path: "/postcard-3"
+      path: "/postcard-3",
     },
     {
       id: 4,
       title: "Fairy Tale Book",
-      description: "A magical storybook with pages that turn to reveal your love story",
+      description:
+        "A magical storybook with pages that turn to reveal your love story",
       gradient: "from-purple-500 via-indigo-500 to-purple-600",
       icon: "📖",
-      path: "/postcard-4"
+      path: "/postcard-4",
     },
     {
       id: 5,
@@ -42,16 +44,17 @@ const Showcase = () => {
       description: "Romantic messages floating up from the ocean depths",
       gradient: "from-cyan-500 via-blue-500 to-indigo-500",
       icon: "🍾",
-      path: "/postcard-5"
+      path: "/postcard-5",
     },
     {
       id: 6,
       title: "Snow Globe",
-      description: "A magical snow globe to shake and reveal your heartfelt message",
+      description:
+        "A magical snow globe to shake and reveal your heartfelt message",
       gradient: "from-slate-400 via-purple-400 to-pink-400",
       icon: "❄️",
-      path: "/postcard-6"
-    }
+      path: "/postcard-6",
+    },
   ];
 
   const galleries = [
@@ -61,7 +64,7 @@ const Showcase = () => {
       description: "A sophisticated gallery showcasing your precious memories",
       gradient: "from-purple-400 via-pink-500 to-rose-400",
       icon: "✨",
-      path: "/gallery-1"
+      path: "/gallery-1",
     },
     {
       id: 2,
@@ -69,7 +72,7 @@ const Showcase = () => {
       description: "Scattered polaroids bringing back beautiful moments",
       gradient: "from-cyan-400 via-pink-400 to-rose-500",
       icon: "📸",
-      path: "/gallery-2"
+      path: "/gallery-2",
     },
     {
       id: 3,
@@ -77,7 +80,7 @@ const Showcase = () => {
       description: "A scroll-through journey of your love story",
       gradient: "from-indigo-400 via-purple-500 to-pink-500",
       icon: "🎬",
-      path: "/gallery-3"
+      path: "/gallery-3",
     },
     {
       id: 4,
@@ -85,7 +88,7 @@ const Showcase = () => {
       description: "A smooth rotating carousel showcasing your memories",
       gradient: "from-rose-500 via-pink-500 to-purple-500",
       icon: "🎠",
-      path: "/gallery-4"
+      path: "/gallery-4",
     },
     {
       id: 5,
@@ -93,7 +96,7 @@ const Showcase = () => {
       description: "Your memories presented like a classic movie reel",
       gradient: "from-amber-500 via-orange-500 to-red-500",
       icon: "🎞️",
-      path: "/gallery-5"
+      path: "/gallery-5",
     },
     {
       id: 6,
@@ -101,8 +104,8 @@ const Showcase = () => {
       description: "Photos arranged like stars forming your love constellation",
       gradient: "from-indigo-600 via-purple-600 to-pink-600",
       icon: "⭐",
-      path: "/gallery-6"
-    }
+      path: "/gallery-6",
+    },
   ];
 
   const containerVariants = {
@@ -111,32 +114,36 @@ const Showcase = () => {
       opacity: 1,
       transition: {
         staggerChildren: 0.15,
-        delayChildren: 0.3
-      }
-    }
+        delayChildren: 0.3,
+      },
+    },
   };
 
   const cardVariants = {
     hidden: { opacity: 0, y: 50, scale: 0.9 },
-    visible: { 
-      opacity: 1, 
-      y: 0, 
+    visible: {
+      opacity: 1,
+      y: 0,
       scale: 1,
       transition: {
         type: "spring",
         stiffness: 100,
-        damping: 15
-      }
-    }
+        damping: 15,
+      },
+    },
   };
 
-  const floatingHearts = useMemo(() => Array.from({ length: 20 }, (_, i) => ({
-    id: i,
-    left: (i * 5) % 100,
-    delay: (i * 0.25) % 5,
-    duration: 10 + (i % 10),
-    size: 10 + (i % 20)
-  })), []);
+  const floatingHearts = useMemo(
+    () =>
+      Array.from({ length: 20 }, (_, i) => ({
+        id: i,
+        left: (i * 5) % 100,
+        delay: (i * 0.25) % 5,
+        duration: 10 + (i % 10),
+        size: 10 + (i % 20),
+      })),
+    [],
+  );
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-pink-100 via-rose-50 to-pink-200 overflow-hidden relative">
@@ -145,22 +152,22 @@ const Showcase = () => {
         <motion.div
           key={heart.id}
           className="absolute text-pink-300 pointer-events-none select-none"
-          style={{ 
-            left: `${heart.left}%`, 
+          style={{
+            left: `${heart.left}%`,
             fontSize: heart.size,
-            bottom: -50
+            bottom: -50,
           }}
           animate={{
             y: [0, -window.innerHeight - 100],
             x: [0, Math.sin(heart.id) * 50],
             rotate: [0, 360],
-            opacity: [0, 1, 1, 0]
+            opacity: [0, 1, 1, 0],
           }}
           transition={{
             duration: heart.duration,
             delay: heart.delay,
             repeat: Infinity,
-            ease: "linear"
+            ease: "linear",
           }}
         >
           ❤
@@ -168,7 +175,7 @@ const Showcase = () => {
       ))}
 
       {/* Header */}
-      <motion.header 
+      <motion.header
         className="text-center py-16 relative z-10"
         initial={{ opacity: 0, y: -50 }}
         animate={{ opacity: 1, y: 0 }}
@@ -183,7 +190,7 @@ const Showcase = () => {
             Valentine Templates
           </h1>
         </motion.div>
-        <motion.p 
+        <motion.p
           className="mt-4 text-xl text-pink-700 font-medium"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -205,8 +212,8 @@ const Showcase = () => {
             <span className="animate-heartbeat text-4xl">💌</span>
             Love Letters & Postcards
           </h2>
-          
-          <motion.div 
+
+          <motion.div
             className="grid md:grid-cols-3 gap-8"
             variants={containerVariants}
             initial="hidden"
@@ -217,11 +224,11 @@ const Showcase = () => {
                 <Link to={card.path}>
                   <motion.div
                     className={`relative rounded-3xl p-8 bg-gradient-to-br ${card.gradient} cursor-pointer overflow-hidden group`}
-                    whileHover={{ 
-                      scale: 1.05, 
+                    whileHover={{
+                      scale: 1.05,
                       rotateY: 5,
                       rotateX: -5,
-                      boxShadow: "0 25px 50px -12px rgba(236, 72, 153, 0.5)"
+                      boxShadow: "0 25px 50px -12px rgba(236, 72, 153, 0.5)",
                     }}
                     whileTap={{ scale: 0.98 }}
                     style={{ minHeight: 280 }}
@@ -230,21 +237,25 @@ const Showcase = () => {
                     <motion.div
                       className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full"
                       animate={{ translateX: ["100%", "-100%"] }}
-                      transition={{ duration: 3, repeat: Infinity, repeatDelay: 2 }}
+                      transition={{
+                        duration: 3,
+                        repeat: Infinity,
+                        repeatDelay: 2,
+                      }}
                     />
-                    
+
                     {/* Card Content */}
                     <div className="relative z-10">
-                      <motion.span 
+                      <motion.span
                         className="text-6xl block mb-4"
-                        animate={{ 
+                        animate={{
                           rotate: [0, 10, -10, 0],
-                          scale: [1, 1.1, 1]
+                          scale: [1, 1.1, 1],
                         }}
-                        transition={{ 
-                          duration: 2, 
+                        transition={{
+                          duration: 2,
                           repeat: Infinity,
-                          repeatDelay: 1
+                          repeatDelay: 1,
                         }}
                       >
                         {card.icon}
@@ -255,8 +266,8 @@ const Showcase = () => {
                       <p className="text-white/90 text-sm leading-relaxed">
                         {card.description}
                       </p>
-                      
-                      <motion.div 
+
+                      <motion.div
                         className="mt-6 flex items-center gap-2 text-white font-medium"
                         whileHover={{ x: 10 }}
                       >
@@ -294,8 +305,8 @@ const Showcase = () => {
             <span className="animate-heartbeat text-4xl">📷</span>
             Photo Galleries
           </h2>
-          
-          <motion.div 
+
+          <motion.div
             className="grid md:grid-cols-3 gap-8"
             variants={containerVariants}
             initial="hidden"
@@ -306,11 +317,11 @@ const Showcase = () => {
                 <Link to={card.path}>
                   <motion.div
                     className={`relative rounded-3xl p-8 bg-gradient-to-br ${card.gradient} cursor-pointer overflow-hidden group`}
-                    whileHover={{ 
-                      scale: 1.05, 
+                    whileHover={{
+                      scale: 1.05,
                       rotateY: -5,
                       rotateX: 5,
-                      boxShadow: "0 25px 50px -12px rgba(168, 85, 247, 0.5)"
+                      boxShadow: "0 25px 50px -12px rgba(168, 85, 247, 0.5)",
                     }}
                     whileTap={{ scale: 0.98 }}
                     style={{ minHeight: 280 }}
@@ -322,32 +333,32 @@ const Showcase = () => {
                         className="absolute w-2 h-2 bg-white rounded-full"
                         style={{
                           top: `${20 + i * 15}%`,
-                          left: `${10 + i * 20}%`
+                          left: `${10 + i * 20}%`,
                         }}
                         animate={{
                           opacity: [0, 1, 0],
-                          scale: [0, 1.5, 0]
+                          scale: [0, 1.5, 0],
                         }}
                         transition={{
                           duration: 2,
                           delay: i * 0.3,
-                          repeat: Infinity
+                          repeat: Infinity,
                         }}
                       />
                     ))}
-                    
+
                     {/* Card Content */}
                     <div className="relative z-10">
-                      <motion.span 
+                      <motion.span
                         className="text-6xl block mb-4"
-                        animate={{ 
+                        animate={{
                           rotate: [0, -10, 10, 0],
-                          scale: [1, 1.15, 1]
+                          scale: [1, 1.15, 1],
                         }}
-                        transition={{ 
-                          duration: 2.5, 
+                        transition={{
+                          duration: 2.5,
                           repeat: Infinity,
-                          repeatDelay: 0.5
+                          repeatDelay: 0.5,
                         }}
                       >
                         {card.icon}
@@ -358,8 +369,8 @@ const Showcase = () => {
                       <p className="text-white/90 text-sm leading-relaxed">
                         {card.description}
                       </p>
-                      
-                      <motion.div 
+
+                      <motion.div
                         className="mt-6 flex items-center gap-2 text-white font-medium"
                         whileHover={{ x: 10 }}
                       >
@@ -386,14 +397,15 @@ const Showcase = () => {
       </section>
 
       {/* Footer */}
-      <motion.footer 
+      <motion.footer
         className="text-center py-8 text-pink-600 relative z-10"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1 }}
       >
         <p className="flex items-center justify-center gap-2">
-          Made with <span className="animate-heartbeat text-red-500">❤️</span> for your special someone
+          Made with <span className="animate-heartbeat text-red-500">❤️</span>{" "}
+          for your special someone
         </p>
       </motion.footer>
     </div>

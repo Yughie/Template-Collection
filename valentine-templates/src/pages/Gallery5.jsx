@@ -1,7 +1,7 @@
-import { useState, useRef } from 'react';
-import { motion, useScroll, useSpring } from 'framer-motion';
-import { Link } from 'react-router-dom';
-import { templateConfig } from '../config/templateConfig';
+import { useState, useRef } from "react";
+import { motion, useScroll, useSpring } from "framer-motion";
+import { Link } from "react-router-dom";
+import { templateConfig } from "../config/templateConfig";
 
 const Gallery5 = () => {
   const [selectedFrame, setSelectedFrame] = useState(null);
@@ -9,12 +9,12 @@ const Gallery5 = () => {
   const config = templateConfig.gallery5;
 
   const { scrollXProgress } = useScroll({
-    container: containerRef
+    container: containerRef,
   });
 
   const smoothProgress = useSpring(scrollXProgress, {
     stiffness: 100,
-    damping: 30
+    damping: 30,
   });
 
   return (
@@ -52,7 +52,7 @@ const Gallery5 = () => {
           {config.title}
         </h1>
         <p className="text-gray-400 mt-2 font-mono">{config.subtitle}</p>
-        
+
         {/* Film Reel Animation */}
         <div className="flex justify-center gap-4 mt-6">
           {[...Array(3)].map((_, i) => (
@@ -60,7 +60,12 @@ const Gallery5 = () => {
               key={i}
               className="w-8 h-8 border-2 border-amber-500/50 rounded-full"
               animate={{ rotate: 360 }}
-              transition={{ duration: 2, repeat: Infinity, ease: "linear", delay: i * 0.2 }}
+              transition={{
+                duration: 2,
+                repeat: Infinity,
+                ease: "linear",
+                delay: i * 0.2,
+              }}
             >
               <div className="w-full h-full relative">
                 {[...Array(4)].map((_, j) => (
@@ -68,9 +73,9 @@ const Gallery5 = () => {
                     key={j}
                     className="absolute w-1 h-1 bg-amber-500/50 rounded-full"
                     style={{
-                      top: '50%',
-                      left: '50%',
-                      transform: `rotate(${j * 90}deg) translateY(-10px)`
+                      top: "50%",
+                      left: "50%",
+                      transform: `rotate(${j * 90}deg) translateY(-10px)`,
                     }}
                   />
                 ))}
@@ -92,7 +97,7 @@ const Gallery5 = () => {
       <div
         ref={containerRef}
         className="overflow-x-auto overflow-y-hidden scrollbar-hide pb-8"
-        style={{ scrollBehavior: 'smooth' }}
+        style={{ scrollBehavior: "smooth" }}
       >
         <div className="flex items-center min-h-[60vh] px-8 md:px-16">
           {/* Film Strip */}
@@ -100,7 +105,10 @@ const Gallery5 = () => {
             {/* Top Sprocket Holes */}
             <div className="absolute top-0 left-0 right-0 flex">
               {config.frames.map((_, i) => (
-                <div key={`top-${i}`} className="flex-shrink-0 w-[300px] md:w-[400px] flex justify-around px-8">
+                <div
+                  key={`top-${i}`}
+                  className="flex-shrink-0 w-[300px] md:w-[400px] flex justify-around px-8"
+                >
                   {[...Array(4)].map((_, j) => (
                     <div key={j} className="w-4 h-4 bg-gray-700 rounded-sm" />
                   ))}
@@ -111,7 +119,10 @@ const Gallery5 = () => {
             {/* Bottom Sprocket Holes */}
             <div className="absolute bottom-0 left-0 right-0 flex">
               {config.frames.map((_, i) => (
-                <div key={`bottom-${i}`} className="flex-shrink-0 w-[300px] md:w-[400px] flex justify-around px-8">
+                <div
+                  key={`bottom-${i}`}
+                  className="flex-shrink-0 w-[300px] md:w-[400px] flex justify-around px-8"
+                >
                   {[...Array(4)].map((_, j) => (
                     <div key={j} className="w-4 h-4 bg-gray-700 rounded-sm" />
                   ))}
@@ -140,7 +151,7 @@ const Gallery5 = () => {
                 >
                   {/* Frame Border */}
                   <div className="absolute inset-0 border-4 border-gray-600 rounded z-10 pointer-events-none" />
-                  
+
                   {/* Image */}
                   <div className="aspect-[4/3] overflow-hidden">
                     <img
@@ -156,13 +167,17 @@ const Gallery5 = () => {
                     initial={{ opacity: 0 }}
                     whileHover={{ opacity: 1 }}
                   >
-                    <p className="text-white font-mono text-sm">{frame.caption}</p>
-                    <p className="text-amber-400 text-xs mt-1">{frame.timestamp}</p>
+                    <p className="text-white font-mono text-sm">
+                      {frame.caption}
+                    </p>
+                    <p className="text-amber-400 text-xs mt-1">
+                      {frame.timestamp}
+                    </p>
                   </motion.div>
 
                   {/* Film Frame Number */}
                   <div className="absolute top-2 right-2 text-amber-500/50 font-mono text-xs">
-                    #{String(index + 1).padStart(3, '0')}
+                    #{String(index + 1).padStart(3, "0")}
                   </div>
 
                   {/* Play Icon on Hover */}
@@ -197,7 +212,9 @@ const Gallery5 = () => {
                 >
                   💖
                 </motion.div>
-                <p className="text-white font-serif text-xl italic">"{config.endMessage}"</p>
+                <p className="text-white font-serif text-xl italic">
+                  "{config.endMessage}"
+                </p>
                 <p className="text-amber-400 mt-2">— {config.signature}</p>
               </motion.div>
             </div>
@@ -236,13 +253,13 @@ const Gallery5 = () => {
                   <div key={i} className="w-3 h-3 bg-gray-600 rounded-sm" />
                 ))}
               </div>
-              
+
               <img
                 src={selectedFrame.url}
                 alt={selectedFrame.caption}
                 className="w-full rounded filter sepia-[0.1]"
               />
-              
+
               <div className="flex justify-around mt-2">
                 {[...Array(8)].map((_, i) => (
                   <div key={i} className="w-3 h-3 bg-gray-600 rounded-sm" />
@@ -251,7 +268,9 @@ const Gallery5 = () => {
             </div>
 
             <div className="text-center mt-4">
-              <h3 className="text-white text-xl font-mono">{selectedFrame.caption}</h3>
+              <h3 className="text-white text-xl font-mono">
+                {selectedFrame.caption}
+              </h3>
               <p className="text-amber-400 mt-1">{selectedFrame.timestamp}</p>
             </div>
 

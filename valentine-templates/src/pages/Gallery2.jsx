@@ -1,7 +1,7 @@
-import { useState, useMemo } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Link } from 'react-router-dom';
-import { templateConfig } from '../config/templateConfig';
+import { useState, useMemo } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Link } from "react-router-dom";
+import { templateConfig } from "../config/templateConfig";
 
 const Gallery2 = () => {
   const [selectedImage, setSelectedImage] = useState(null);
@@ -14,14 +14,18 @@ const Gallery2 = () => {
   };
 
   // Floating elements
-  const floatingElements = useMemo(() => Array.from({ length: 20 }, (_, i) => ({
-    id: i,
-    emoji: ['💕', '✨', '💗', '🌸', '💖', '⭐'][i % 6],
-    left: (i * 5) % 100,
-    delay: (i * 0.25) % 5,
-    duration: 8 + (i % 8),
-    size: 15 + (i % 20)
-  })), []);
+  const floatingElements = useMemo(
+    () =>
+      Array.from({ length: 20 }, (_, i) => ({
+        id: i,
+        emoji: ["💕", "✨", "💗", "🌸", "💖", "⭐"][i % 6],
+        left: (i * 5) % 100,
+        delay: (i * 0.25) % 5,
+        duration: 8 + (i % 8),
+        size: 15 + (i % 20),
+      })),
+    [],
+  );
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -29,20 +33,20 @@ const Gallery2 = () => {
       opacity: 1,
       transition: {
         staggerChildren: 0.1,
-        delayChildren: 0.5
-      }
-    }
+        delayChildren: 0.5,
+      },
+    },
   };
 
   const polaroidVariants = {
-    hidden: { 
-      opacity: 0, 
+    hidden: {
+      opacity: 0,
       scale: 0,
       rotate: -30,
-      y: 100
+      y: 100,
     },
-    visible: (i) => ({ 
-      opacity: 1, 
+    visible: (i) => ({
+      opacity: 1,
       scale: 1,
       rotate: getRandomRotation(i),
       y: 0,
@@ -50,9 +54,9 @@ const Gallery2 = () => {
         type: "spring",
         stiffness: 100,
         damping: 12,
-        delay: i * 0.1
-      }
-    })
+        delay: i * 0.1,
+      },
+    }),
   };
 
   return (
@@ -73,21 +77,21 @@ const Gallery2 = () => {
         <motion.div
           key={el.id}
           className="absolute pointer-events-none"
-          style={{ 
-            left: `${el.left}%`, 
+          style={{
+            left: `${el.left}%`,
             top: -50,
-            fontSize: el.size
+            fontSize: el.size,
           }}
           animate={{
             y: [0, window.innerHeight + 100],
             rotate: [0, 360],
-            x: [0, Math.sin(el.id) * 50, 0]
+            x: [0, Math.sin(el.id) * 50, 0],
           }}
           transition={{
             duration: el.duration,
             delay: el.delay,
             repeat: Infinity,
-            ease: "linear"
+            ease: "linear",
           }}
         >
           {el.emoji}
@@ -95,7 +99,7 @@ const Gallery2 = () => {
       ))}
 
       {/* Header */}
-      <motion.header 
+      <motion.header
         className="text-center pt-20 pb-8 relative z-10"
         initial={{ opacity: 0, y: -50 }}
         animate={{ opacity: 1, y: 0 }}
@@ -110,7 +114,7 @@ const Gallery2 = () => {
             {config.title}
           </h1>
         </motion.div>
-        <motion.p 
+        <motion.p
           className="mt-4 text-xl text-pink-600 font-medium"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -121,7 +125,7 @@ const Gallery2 = () => {
       </motion.header>
 
       {/* Polaroid Grid - Scattered Layout */}
-      <motion.div 
+      <motion.div
         className="max-w-6xl mx-auto px-6 pb-20 relative"
         variants={containerVariants}
         initial="hidden"
@@ -135,29 +139,32 @@ const Gallery2 = () => {
               variants={polaroidVariants}
               className="cursor-pointer"
               onClick={() => setSelectedImage(image)}
-              whileHover={{ 
-                scale: 1.1, 
+              whileHover={{
+                scale: 1.1,
                 rotate: 0,
                 zIndex: 50,
-                boxShadow: "0 30px 60px rgba(0,0,0,0.3)"
+                boxShadow: "0 30px 60px rgba(0,0,0,0.3)",
               }}
               whileTap={{ scale: 0.95 }}
             >
               {/* Polaroid Frame */}
-              <div className="bg-white p-3 pb-12 rounded shadow-xl relative" style={{ width: 200 }}>
+              <div
+                className="bg-white p-3 pb-12 rounded shadow-xl relative"
+                style={{ width: 200 }}
+              >
                 {/* Photo */}
                 <div className="aspect-square overflow-hidden bg-gray-100">
                   <motion.img
                     src={image.url}
                     alt={image.note}
                     className="w-full h-full object-cover"
-                    initial={{ filter: 'grayscale(30%)' }}
-                    whileHover={{ filter: 'grayscale(0%)' }}
+                    initial={{ filter: "grayscale(30%)" }}
+                    whileHover={{ filter: "grayscale(0%)" }}
                   />
                 </div>
-                
+
                 {/* Handwritten Note */}
-                <motion.p 
+                <motion.p
                   className="absolute bottom-3 left-0 right-0 text-center font-['Comic_Sans_MS',_cursive] text-gray-600 text-sm px-2"
                   style={{ fontFamily: "'Caveat', cursive, sans-serif" }}
                 >
@@ -166,7 +173,7 @@ const Gallery2 = () => {
 
                 {/* Tape effect */}
                 <div className="absolute -top-3 left-1/2 -translate-x-1/2 w-12 h-6 bg-yellow-200/70 transform rotate-2" />
-                
+
                 {/* Small decorations */}
                 <motion.div
                   className="absolute -bottom-2 -right-2 text-lg"
@@ -190,30 +197,28 @@ const Gallery2 = () => {
       >
         <motion.div
           className="bg-white rounded-2xl p-8 shadow-xl relative"
-          style={{ transform: 'rotate(-1deg)' }}
+          style={{ transform: "rotate(-1deg)" }}
           whileHover={{ rotate: 0, boxShadow: "0 20px 50px rgba(0,0,0,0.2)" }}
         >
           {/* Decorative tape */}
           <div className="absolute -top-3 left-8 w-16 h-6 bg-pink-200/70 transform -rotate-6" />
           <div className="absolute -top-3 right-8 w-16 h-6 bg-cyan-200/70 transform rotate-6" />
-          
+
           <motion.div
             className="text-4xl mb-4"
-            animate={{ 
-              scale: [1, 1.2, 1]
+            animate={{
+              scale: [1, 1.2, 1],
             }}
             transition={{ duration: 2, repeat: Infinity }}
           >
             💝
           </motion.div>
-          
+
           <p className="text-lg text-gray-700 font-['Caveat',_cursive] text-xl leading-relaxed">
             {config.closingNote}
           </p>
-          
-          <p className="mt-4 text-pink-500 font-bold">
-            — {config.from}
-          </p>
+
+          <p className="mt-4 text-pink-500 font-bold">— {config.from}</p>
         </motion.div>
       </motion.div>
 
@@ -229,23 +234,23 @@ const Gallery2 = () => {
           >
             <motion.div
               className="bg-white p-4 pb-16 rounded-lg shadow-2xl max-w-lg w-full relative"
-              initial={{ 
-                scale: 0.3, 
-                opacity: 0, 
+              initial={{
+                scale: 0.3,
+                opacity: 0,
                 rotate: -20,
-                y: 100 
+                y: 100,
               }}
-              animate={{ 
-                scale: 1, 
-                opacity: 1, 
+              animate={{
+                scale: 1,
+                opacity: 1,
                 rotate: 0,
-                y: 0
+                y: 0,
               }}
-              exit={{ 
-                scale: 0.3, 
-                opacity: 0, 
+              exit={{
+                scale: 0.3,
+                opacity: 0,
                 rotate: 20,
-                y: 100 
+                y: 100,
               }}
               transition={{ type: "spring", damping: 20 }}
               onClick={(e) => e.stopPropagation()}
@@ -255,7 +260,7 @@ const Gallery2 = () => {
                 alt={selectedImage.note}
                 className="w-full aspect-square object-cover"
               />
-              <motion.p 
+              <motion.p
                 className="absolute bottom-4 left-0 right-0 text-center font-['Caveat',_cursive] text-gray-600 text-2xl"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
@@ -263,7 +268,7 @@ const Gallery2 = () => {
               >
                 {selectedImage.note}
               </motion.p>
-              
+
               <motion.button
                 className="absolute top-2 right-2 w-8 h-8 bg-pink-500 rounded-full flex items-center justify-center text-white text-lg shadow-lg"
                 whileHover={{ scale: 1.1 }}

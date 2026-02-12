@@ -1,7 +1,7 @@
-import { useState, useMemo } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Link } from 'react-router-dom';
-import { templateConfig } from '../config/templateConfig';
+import { useState, useMemo } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Link } from "react-router-dom";
+import { templateConfig } from "../config/templateConfig";
 
 const Gallery6 = () => {
   const [selectedStar, setSelectedStar] = useState(null);
@@ -9,46 +9,69 @@ const Gallery6 = () => {
   const config = templateConfig.gallery6;
 
   // Star positions in a constellation pattern
-  const starPositions = useMemo(() => [
-    { x: 20, y: 25 },
-    { x: 45, y: 15 },
-    { x: 70, y: 30 },
-    { x: 85, y: 20 },
-    { x: 15, y: 55 },
-    { x: 40, y: 50 },
-    { x: 60, y: 60 },
-    { x: 80, y: 55 },
-    { x: 30, y: 80 },
-    { x: 55, y: 75 },
-    { x: 75, y: 85 },
-    { x: 50, y: 45 },
-  ], []);
+  const starPositions = useMemo(
+    () => [
+      { x: 20, y: 25 },
+      { x: 45, y: 15 },
+      { x: 70, y: 30 },
+      { x: 85, y: 20 },
+      { x: 15, y: 55 },
+      { x: 40, y: 50 },
+      { x: 60, y: 60 },
+      { x: 80, y: 55 },
+      { x: 30, y: 80 },
+      { x: 55, y: 75 },
+      { x: 75, y: 85 },
+      { x: 50, y: 45 },
+    ],
+    [],
+  );
 
   // Constellation lines connecting stars
-  const constellationLines = useMemo(() => [
-    [0, 1], [1, 2], [2, 3],
-    [0, 4], [4, 5], [5, 6], [6, 7],
-    [4, 8], [8, 9], [9, 10],
-    [5, 11], [11, 6], [1, 11]
-  ], []);
+  const constellationLines = useMemo(
+    () => [
+      [0, 1],
+      [1, 2],
+      [2, 3],
+      [0, 4],
+      [4, 5],
+      [5, 6],
+      [6, 7],
+      [4, 8],
+      [8, 9],
+      [9, 10],
+      [5, 11],
+      [11, 6],
+      [1, 11],
+    ],
+    [],
+  );
 
   // Background stars
-  const backgroundStars = useMemo(() => Array.from({ length: 50 }, (_, i) => ({
-    id: i,
-    left: (i * 2.04) % 100,
-    top: (i * 2.04) % 100,
-    size: 1 + (i % 3),
-    delay: (i * 0.1) % 3,
-    duration: 2 + (i % 3)
-  })), []);
+  const backgroundStars = useMemo(
+    () =>
+      Array.from({ length: 50 }, (_, i) => ({
+        id: i,
+        left: (i * 2.04) % 100,
+        top: (i * 2.04) % 100,
+        size: 1 + (i % 3),
+        delay: (i * 0.1) % 3,
+        duration: 2 + (i % 3),
+      })),
+    [],
+  );
 
   // Shooting stars
-  const shootingStars = useMemo(() => Array.from({ length: 3 }, (_, i) => ({
-    id: i,
-    startX: 10 + (i * 30),
-    startY: 5 + (i * 10),
-    delay: i * 8
-  })), []);
+  const shootingStars = useMemo(
+    () =>
+      Array.from({ length: 3 }, (_, i) => ({
+        id: i,
+        startX: 10 + i * 30,
+        startY: 5 + i * 10,
+        delay: i * 8,
+      })),
+    [],
+  );
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-950 via-indigo-950 to-purple-950 overflow-hidden relative">
@@ -72,16 +95,16 @@ const Gallery6 = () => {
             left: `${star.left}%`,
             top: `${star.top}%`,
             width: star.size,
-            height: star.size
+            height: star.size,
           }}
           animate={{
             opacity: [0.2, 0.8, 0.2],
-            scale: [1, 1.5, 1]
+            scale: [1, 1.5, 1],
           }}
           transition={{
             duration: star.duration,
             delay: star.delay,
-            repeat: Infinity
+            repeat: Infinity,
           }}
         />
       ))}
@@ -94,18 +117,18 @@ const Gallery6 = () => {
           style={{
             left: `${star.startX}%`,
             top: `${star.startY}%`,
-            boxShadow: '0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff'
+            boxShadow: "0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff",
           }}
           animate={{
             x: [0, 300],
             y: [0, 200],
-            opacity: [0, 1, 0]
+            opacity: [0, 1, 0],
           }}
           transition={{
             duration: 2,
             delay: star.delay,
             repeat: Infinity,
-            repeatDelay: 12
+            repeatDelay: 12,
           }}
         />
       ))}
@@ -127,7 +150,9 @@ const Gallery6 = () => {
           {config.title}
         </h1>
         <p className="text-indigo-300 mt-2">{config.subtitle}</p>
-        <p className="text-indigo-400/60 text-sm mt-4">Click on the stars to explore our memories</p>
+        <p className="text-indigo-400/60 text-sm mt-4">
+          Click on the stars to explore our memories
+        </p>
       </motion.header>
 
       {/* Constellation Container */}
@@ -138,7 +163,7 @@ const Gallery6 = () => {
             const fromPos = starPositions[from];
             const toPos = starPositions[to];
             if (!fromPos || !toPos) return null;
-            
+
             return (
               <motion.line
                 key={index}
@@ -177,12 +202,14 @@ const Gallery6 = () => {
               <motion.div
                 className="absolute inset-0 rounded-full"
                 style={{
-                  background: 'radial-gradient(circle, rgba(165,180,252,0.5), transparent)',
-                  transform: 'scale(2)'
+                  background:
+                    "radial-gradient(circle, rgba(165,180,252,0.5), transparent)",
+                  transform: "scale(2)",
                 }}
                 animate={{
-                  opacity: hoveredStar === index ? [0.5, 0.8, 0.5] : [0.2, 0.4, 0.2],
-                  scale: hoveredStar === index ? [2, 2.5, 2] : [1.5, 2, 1.5]
+                  opacity:
+                    hoveredStar === index ? [0.5, 0.8, 0.5] : [0.2, 0.4, 0.2],
+                  scale: hoveredStar === index ? [2, 2.5, 2] : [1.5, 2, 1.5],
                 }}
                 transition={{ duration: 2, repeat: Infinity }}
               />
@@ -192,9 +219,18 @@ const Gallery6 = () => {
                 className="relative w-12 h-12 md:w-16 md:h-16 rounded-full overflow-hidden border-2 border-indigo-300/50"
                 whileHover={{ scale: 1.3 }}
                 animate={{
-                  boxShadow: hoveredStar === index
-                    ? ['0 0 20px rgba(165,180,252,0.8)', '0 0 40px rgba(165,180,252,1)', '0 0 20px rgba(165,180,252,0.8)']
-                    : ['0 0 10px rgba(165,180,252,0.3)', '0 0 20px rgba(165,180,252,0.5)', '0 0 10px rgba(165,180,252,0.3)']
+                  boxShadow:
+                    hoveredStar === index
+                      ? [
+                          "0 0 20px rgba(165,180,252,0.8)",
+                          "0 0 40px rgba(165,180,252,1)",
+                          "0 0 20px rgba(165,180,252,0.8)",
+                        ]
+                      : [
+                          "0 0 10px rgba(165,180,252,0.3)",
+                          "0 0 20px rgba(165,180,252,0.5)",
+                          "0 0 10px rgba(165,180,252,0.3)",
+                        ],
                 }}
                 transition={{ duration: 2, repeat: Infinity }}
               >
@@ -260,12 +296,12 @@ const Gallery6 = () => {
                   style={{ transform: `rotate(${i * 45}deg)` }}
                   animate={{
                     scaleY: [0, 1.5, 0],
-                    opacity: [0, 0.5, 0]
+                    opacity: [0, 0.5, 0],
                   }}
                   transition={{
                     duration: 2,
                     delay: i * 0.1,
-                    repeat: Infinity
+                    repeat: Infinity,
                   }}
                 />
               ))}
@@ -278,17 +314,24 @@ const Gallery6 = () => {
                   className="w-full"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-indigo-950/80 to-transparent" />
-                
+
                 <div className="absolute bottom-0 left-0 right-0 p-6">
-                  <h3 className="text-white text-2xl font-bold">{selectedStar.caption}</h3>
+                  <h3 className="text-white text-2xl font-bold">
+                    {selectedStar.caption}
+                  </h3>
                   <p className="text-indigo-200 mt-1">{selectedStar.date}</p>
-                  <p className="text-indigo-300 mt-4 italic">{selectedStar.note}</p>
+                  <p className="text-indigo-300 mt-4 italic">
+                    {selectedStar.note}
+                  </p>
                 </div>
               </div>
 
               <motion.button
                 className="absolute -top-4 -right-4 w-10 h-10 bg-indigo-500/50 rounded-full flex items-center justify-center text-white backdrop-blur-sm"
-                whileHover={{ scale: 1.1, backgroundColor: "rgba(99, 102, 241, 0.8)" }}
+                whileHover={{
+                  scale: 1.1,
+                  backgroundColor: "rgba(99, 102, 241, 0.8)",
+                }}
                 onClick={() => setSelectedStar(null)}
               >
                 ×

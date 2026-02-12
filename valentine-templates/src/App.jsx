@@ -1,17 +1,17 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Showcase from './pages/Showcase';
-import Postcard1 from './pages/Postcard1';
-import Postcard2 from './pages/Postcard2';
-import Postcard3 from './pages/Postcard3';
-import Postcard4 from './pages/Postcard4';
-import Postcard5 from './pages/Postcard5';
-import Postcard6 from './pages/Postcard6';
-import Gallery1 from './pages/Gallery1';
-import Gallery2 from './pages/Gallery2';
-import Gallery3 from './pages/Gallery3';
-import Gallery4 from './pages/Gallery4';
-import Gallery5 from './pages/Gallery5';
-import Gallery6 from './pages/Gallery6';
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Showcase from "./pages/Showcase";
+import Postcard1 from "./pages/Postcard1";
+import Postcard2 from "./pages/Postcard2";
+import Postcard3 from "./pages/Postcard3";
+import Postcard4 from "./pages/Postcard4";
+import Postcard5 from "./pages/Postcard5";
+import Postcard6 from "./pages/Postcard6";
+import Gallery1 from "./pages/Gallery1";
+import Gallery2 from "./pages/Gallery2";
+import Gallery3 from "./pages/Gallery3";
+import Gallery4 from "./pages/Gallery4";
+import Gallery5 from "./pages/Gallery5";
+import Gallery6 from "./pages/Gallery6";
 
 function App() {
   return (

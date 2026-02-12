@@ -1,7 +1,7 @@
-import { useState, useMemo } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Link } from 'react-router-dom';
-import { templateConfig } from '../config/templateConfig';
+import { useState, useMemo } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Link } from "react-router-dom";
+import { templateConfig } from "../config/templateConfig";
 
 const Postcard5 = () => {
   const [started, setStarted] = useState(false);
@@ -10,13 +10,17 @@ const Postcard5 = () => {
   const config = templateConfig.postcard5;
 
   // Floating bubbles (reduced for performance)
-  const bubbles = useMemo(() => Array.from({ length: 15 }, (_, i) => ({
-    id: i,
-    left: (i * 6.67) % 100,
-    size: 10 + (i * 3) % 30,
-    delay: (i * 0.33) % 5,
-    duration: 8 + (i % 6)
-  })), []);
+  const bubbles = useMemo(
+    () =>
+      Array.from({ length: 15 }, (_, i) => ({
+        id: i,
+        left: (i * 6.67) % 100,
+        size: 10 + ((i * 3) % 30),
+        delay: (i * 0.33) % 5,
+        duration: 8 + (i % 6),
+      })),
+    [],
+  );
 
   const handleStart = () => {
     setStarted(true);
@@ -24,7 +28,7 @@ const Postcard5 = () => {
 
   const nextMessage = () => {
     if (currentMessage < config.messages.length - 1) {
-      setCurrentMessage(prev => prev + 1);
+      setCurrentMessage((prev) => prev + 1);
     } else {
       setShowFinal(true);
     }
@@ -55,7 +59,7 @@ const Postcard5 = () => {
           <motion.div
             key={i}
             className="absolute top-0 w-32 h-full bg-gradient-to-b from-cyan-300/10 to-transparent"
-            style={{ left: `${i * 25}%`, transform: 'skewX(-15deg)' }}
+            style={{ left: `${i * 25}%`, transform: "skewX(-15deg)" }}
             animate={{ opacity: [0.1, 0.3, 0.1] }}
             transition={{ duration: 4, delay: i * 0.5, repeat: Infinity }}
           />
@@ -72,18 +76,19 @@ const Postcard5 = () => {
             bottom: -50,
             width: bubble.size,
             height: bubble.size,
-            background: 'radial-gradient(circle at 30% 30%, rgba(255,255,255,0.4), rgba(255,255,255,0.1))',
-            border: '1px solid rgba(255,255,255,0.3)'
+            background:
+              "radial-gradient(circle at 30% 30%, rgba(255,255,255,0.4), rgba(255,255,255,0.1))",
+            border: "1px solid rgba(255,255,255,0.3)",
           }}
           animate={{
             y: [0, -window.innerHeight - 100],
-            x: [0, Math.sin(bubble.id) * 30, 0]
+            x: [0, Math.sin(bubble.id) * 30, 0],
           }}
           transition={{
             duration: bubble.duration,
             delay: bubble.delay,
             repeat: Infinity,
-            ease: "linear"
+            ease: "linear",
           }}
         />
       ))}
@@ -100,9 +105,9 @@ const Postcard5 = () => {
           >
             <motion.div
               className="text-8xl mb-6"
-              animate={{ 
+              animate={{
                 y: [0, -15, 0],
-                rotate: [0, 5, -5, 0]
+                rotate: [0, 5, -5, 0],
               }}
               transition={{ duration: 4, repeat: Infinity }}
             >
@@ -111,13 +116,14 @@ const Postcard5 = () => {
             <h1 className="text-3xl md:text-4xl font-bold text-cyan-100 mb-4">
               {config.title}
             </h1>
-            <p className="text-cyan-200/80 mb-8 max-w-md">
-              {config.subtitle}
-            </p>
+            <p className="text-cyan-200/80 mb-8 max-w-md">{config.subtitle}</p>
             <motion.button
               onClick={handleStart}
               className="px-8 py-4 bg-gradient-to-r from-cyan-500 to-blue-500 text-white rounded-full text-lg font-medium shadow-xl"
-              whileHover={{ scale: 1.05, boxShadow: "0 20px 40px rgba(6, 182, 212, 0.4)" }}
+              whileHover={{
+                scale: 1.05,
+                boxShadow: "0 20px 40px rgba(6, 182, 212, 0.4)",
+              }}
               whileTap={{ scale: 0.95 }}
             >
               Open the Bottle 💌
@@ -137,7 +143,7 @@ const Postcard5 = () => {
             <div className="bg-gradient-to-br from-amber-100 to-amber-50 rounded-2xl shadow-2xl overflow-hidden relative">
               {/* Aged Paper Texture */}
               <div className="absolute inset-0 opacity-20 bg-[url('data:image/svg+xml,...')]" />
-              
+
               {/* Image */}
               <div className="h-48 md:h-64 overflow-hidden relative">
                 <motion.img
@@ -160,7 +166,7 @@ const Postcard5 = () => {
                 >
                   {config.messages[currentMessage].emoji}
                 </motion.div>
-                
+
                 <motion.p
                   className="text-gray-700 text-lg md:text-xl text-center font-serif leading-relaxed"
                   initial={{ opacity: 0 }}
@@ -177,7 +183,11 @@ const Postcard5 = () => {
                       key={i}
                       className="w-2 h-2 bg-cyan-400 rounded-full"
                       animate={{ y: [0, -8, 0] }}
-                      transition={{ duration: 1, delay: i * 0.1, repeat: Infinity }}
+                      transition={{
+                        duration: 1,
+                        delay: i * 0.1,
+                        repeat: Infinity,
+                      }}
                     />
                   ))}
                 </div>
@@ -192,9 +202,11 @@ const Postcard5 = () => {
                   <motion.div
                     key={index}
                     className={`w-3 h-3 rounded-full ${
-                      index <= currentMessage ? 'bg-cyan-400' : 'bg-white/30'
+                      index <= currentMessage ? "bg-cyan-400" : "bg-white/30"
                     }`}
-                    animate={index === currentMessage ? { scale: [1, 1.3, 1] } : {}}
+                    animate={
+                      index === currentMessage ? { scale: [1, 1.3, 1] } : {}
+                    }
                     transition={{ duration: 1, repeat: Infinity }}
                   />
                 ))}
@@ -207,7 +219,9 @@ const Postcard5 = () => {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
-                {currentMessage < config.messages.length - 1 ? "Next Message 💫" : "Read Final Note 💝"}
+                {currentMessage < config.messages.length - 1
+                  ? "Next Message 💫"
+                  : "Read Final Note 💝"}
               </motion.button>
             </div>
           </motion.div>
@@ -224,33 +238,41 @@ const Postcard5 = () => {
               {/* Final Image */}
               <motion.div
                 className="w-40 h-40 mx-auto rounded-full overflow-hidden border-4 border-cyan-400/50 shadow-xl mb-6"
-                animate={{ 
-                  boxShadow: ["0 0 30px rgba(6,182,212,0.3)", "0 0 60px rgba(6,182,212,0.5)", "0 0 30px rgba(6,182,212,0.3)"]
+                animate={{
+                  boxShadow: [
+                    "0 0 30px rgba(6,182,212,0.3)",
+                    "0 0 60px rgba(6,182,212,0.5)",
+                    "0 0 30px rgba(6,182,212,0.3)",
+                  ],
                 }}
                 transition={{ duration: 2, repeat: Infinity }}
               >
-                <img src={config.finalImage} alt="Final" className="w-full h-full object-cover" />
+                <img
+                  src={config.finalImage}
+                  alt="Final"
+                  className="w-full h-full object-cover"
+                />
               </motion.div>
 
               <motion.div
                 className="text-5xl mb-4"
-                animate={{ 
+                animate={{
                   scale: [1, 1.3, 1],
-                  rotate: [0, 10, -10, 0]
+                  rotate: [0, 10, -10, 0],
                 }}
                 transition={{ duration: 2, repeat: Infinity }}
               >
                 💖
               </motion.div>
-              
+
               <h2 className="text-2xl md:text-3xl font-bold text-cyan-100 mb-4">
                 {config.finalTitle}
               </h2>
-              
+
               <p className="text-cyan-200 text-lg leading-relaxed mb-6">
                 {config.finalMessage}
               </p>
-              
+
               <p className="text-cyan-300 font-medium text-xl italic">
                 — {config.signature}
               </p>

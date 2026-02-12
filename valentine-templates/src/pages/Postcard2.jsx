@@ -1,7 +1,7 @@
-import { useState, useEffect, useMemo } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Link } from 'react-router-dom';
-import { templateConfig } from '../config/templateConfig';
+import { useState, useEffect, useMemo } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Link } from "react-router-dom";
+import { templateConfig } from "../config/templateConfig";
 
 const Postcard2 = () => {
   const [isFlipped, setIsFlipped] = useState(false);
@@ -14,13 +14,17 @@ const Postcard2 = () => {
   }, []);
 
   // Rose petals falling
-  const roses = useMemo(() => Array.from({ length: 20 }, (_, i) => ({
-    id: i,
-    left: (i * 5) % 100,
-    delay: (i * 0.25) % 5,
-    duration: 10 + (i % 8),
-    rotation: (i * 18) % 360
-  })), []);
+  const roses = useMemo(
+    () =>
+      Array.from({ length: 20 }, (_, i) => ({
+        id: i,
+        left: (i * 5) % 100,
+        delay: (i * 0.25) % 5,
+        duration: 10 + (i % 8),
+        rotation: (i * 18) % 360,
+      })),
+    [],
+  );
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-amber-100 via-rose-100 to-pink-200 flex flex-col items-center justify-center p-4 overflow-hidden relative">
@@ -44,13 +48,13 @@ const Postcard2 = () => {
           animate={{
             y: [0, window.innerHeight + 100],
             rotate: [rose.rotation, rose.rotation + 720],
-            x: [0, Math.sin(rose.id) * 80, 0]
+            x: [0, Math.sin(rose.id) * 80, 0],
           }}
           transition={{
             duration: rose.duration,
             delay: rose.delay,
             repeat: Infinity,
-            ease: "linear"
+            ease: "linear",
           }}
         >
           🌹
@@ -85,28 +89,28 @@ const Postcard2 = () => {
               className="relative preserve-3d w-[85vw] max-w-lg"
               animate={{ rotateY: isFlipped ? 180 : 0 }}
               transition={{ duration: 0.8, ease: "easeInOut" }}
-              style={{ transformStyle: 'preserve-3d' }}
+              style={{ transformStyle: "preserve-3d" }}
             >
               {/* Front of Postcard */}
               <motion.div
                 className="w-full aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl backface-hidden relative"
-                style={{ backfaceVisibility: 'hidden' }}
+                style={{ backfaceVisibility: "hidden" }}
               >
                 {/* Background Image */}
-                <div 
+                <div
                   className="absolute inset-0 bg-cover bg-center"
-                  style={{ 
+                  style={{
                     backgroundImage: `url(${config.backgroundImage})`,
-                    filter: 'sepia(30%) brightness(0.9)'
+                    filter: "sepia(30%) brightness(0.9)",
                   }}
                 />
-                
+
                 {/* Vintage Overlay */}
                 <div className="absolute inset-0 bg-gradient-to-t from-amber-900/60 via-transparent to-amber-900/20" />
-                
+
                 {/* Vintage Border */}
                 <div className="absolute inset-3 border-2 border-amber-200/50 rounded-xl" />
-                
+
                 {/* Content */}
                 <div className="absolute inset-0 flex flex-col items-center justify-center p-8 text-center">
                   <motion.div
@@ -119,9 +123,9 @@ const Postcard2 = () => {
                     </h1>
                     <motion.div
                       className="text-5xl my-4"
-                      animate={{ 
+                      animate={{
                         scale: [1, 1.2, 1],
-                        rotate: [0, 10, -10, 0]
+                        rotate: [0, 10, -10, 0],
                       }}
                       transition={{ duration: 2, repeat: Infinity }}
                     >
@@ -139,17 +143,17 @@ const Postcard2 = () => {
                     key={i}
                     className="absolute w-1 h-1 bg-amber-200 rounded-full"
                     style={{
-                      top: `${10 + (i * 10) % 80}%`,
-                      left: `${10 + (i * 10) % 80}%`
+                      top: `${10 + ((i * 10) % 80)}%`,
+                      left: `${10 + ((i * 10) % 80)}%`,
                     }}
                     animate={{
                       opacity: [0, 1, 0],
-                      scale: [0, 2, 0]
+                      scale: [0, 2, 0],
                     }}
                     transition={{
                       duration: 2,
                       delay: i * 0.3,
-                      repeat: Infinity
+                      repeat: Infinity,
                     }}
                   />
                 ))}
@@ -158,30 +162,30 @@ const Postcard2 = () => {
               {/* Back of Postcard */}
               <motion.div
                 className="absolute inset-0 w-full aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl"
-                style={{ 
-                  backfaceVisibility: 'hidden',
-                  transform: 'rotateY(180deg)'
+                style={{
+                  backfaceVisibility: "hidden",
+                  transform: "rotateY(180deg)",
                 }}
               >
                 {/* Vintage Paper Background */}
                 <div className="absolute inset-0 bg-gradient-to-br from-amber-50 via-rose-50 to-amber-100" />
-                
+
                 {/* Paper Texture */}
-                <div 
+                <div
                   className="absolute inset-0 opacity-30"
                   style={{
-                    backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`
+                    backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
                   }}
                 />
 
                 {/* Vintage Border */}
                 <div className="absolute inset-3 border-2 border-amber-400/50 rounded-xl" />
-                
+
                 {/* Postcard Lines */}
                 <div className="absolute inset-0 p-8">
                   {/* Stamp Area */}
                   <div className="absolute top-4 right-4 w-16 h-20 border-2 border-dashed border-amber-400/50 rounded flex items-center justify-center">
-                    <motion.span 
+                    <motion.span
                       className="text-3xl"
                       animate={{ rotate: [0, 5, -5, 0] }}
                       transition={{ duration: 3, repeat: Infinity }}
@@ -192,7 +196,7 @@ const Postcard2 = () => {
 
                   {/* Message */}
                   <div className="mt-8 pr-20">
-                    <motion.p 
+                    <motion.p
                       className="text-amber-800 font-serif leading-relaxed text-sm md:text-base"
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
@@ -200,21 +204,27 @@ const Postcard2 = () => {
                     >
                       {config.message}
                     </motion.p>
-                    
-                    <motion.div 
+
+                    <motion.div
                       className="mt-6"
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
                       transition={{ delay: 0.6 }}
                     >
-                      <p className="font-serif italic text-amber-700">{config.signature}</p>
+                      <p className="font-serif italic text-amber-700">
+                        {config.signature}
+                      </p>
                       <p className="text-amber-600 mt-1">{config.senderName}</p>
                     </motion.div>
                   </div>
 
                   {/* Decorative Elements */}
-                  <div className="absolute bottom-6 left-6 text-4xl opacity-50">🌹</div>
-                  <div className="absolute bottom-6 right-6 text-2xl opacity-40">💕</div>
+                  <div className="absolute bottom-6 left-6 text-4xl opacity-50">
+                    🌹
+                  </div>
+                  <div className="absolute bottom-6 right-6 text-2xl opacity-40">
+                    💕
+                  </div>
                 </div>
               </motion.div>
             </motion.div>
@@ -225,7 +235,10 @@ const Postcard2 = () => {
               animate={{ opacity: [0.5, 1, 0.5] }}
               transition={{ duration: 2, repeat: Infinity }}
             >
-              {isFlipped ? "Click to see the front" : "Click to read the message"} 💌
+              {isFlipped
+                ? "Click to see the front"
+                : "Click to read the message"}{" "}
+              💌
             </motion.p>
           </motion.div>
         )}
@@ -234,9 +247,9 @@ const Postcard2 = () => {
       {/* Decorative Elements */}
       <motion.div
         className="absolute bottom-10 left-10 text-6xl opacity-30"
-        animate={{ 
+        animate={{
           rotate: [0, 10, -10, 0],
-          scale: [1, 1.1, 1]
+          scale: [1, 1.1, 1],
         }}
         transition={{ duration: 4, repeat: Infinity }}
       >
@@ -244,9 +257,9 @@ const Postcard2 = () => {
       </motion.div>
       <motion.div
         className="absolute top-20 right-10 text-4xl opacity-30"
-        animate={{ 
+        animate={{
           rotate: [0, -10, 10, 0],
-          scale: [1, 1.1, 1]
+          scale: [1, 1.1, 1],
         }}
         transition={{ duration: 5, repeat: Infinity }}
       >
